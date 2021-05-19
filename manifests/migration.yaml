@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sahw2-migration
+spec:
+  template:
+    spec:
+      containers:
+        - name: sahw2-migration
+          image: yegemberdin/sahw2:latest
+          command: ["python"]
+          args: [
+            "manage.py",
+            "migrate"
+          ]
+          env:
+            - name: POSTGRES_DB
+              value: sahw2
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+
+      restartPolicy: Never
+  backoffLimit: 5

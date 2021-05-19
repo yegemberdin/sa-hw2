@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sahw2-configmap
+data:
+  SECRET_KEY: django-insecure-09621w_nb+gxxql3u4ith3oes+hn!ng5-cnnu2%aq4z_$h3j@7
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sahw2-secret
+type: Opaque
+data:
+  POSTGRES_DB: c2FodzI=
+  POSTGRES_PASSWORD: cG9zdGdyZXM=
+  POSTGRES_USER: cG9zdGdyZXM=

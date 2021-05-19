@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  sahw2:
+    ports:
+      - "8001:8000"
+
+  sahw2-db:
+    ports:
+      - "5433:5432"

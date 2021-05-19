@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sahw2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sahw2
+  template:
+    metadata:
+      labels:
+        app: sahw2
+    spec:
+      containers:
+      - name: sahw2
+        image: yegemberdin/sahw2:latest
+        command: ["python"]
+        args: [
+          "manage.py",
+          "runserver",
+          "0.0.0.0:8000"
+        ]
+        ports:
+        - name: web
+          containerPort: 8000
+        env:
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: sahw2-secret
+                key: POSTGRES_DB
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: sahw2-secret
+                key: POSTGRES_PASSWORD
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: sahw2-secret
+                key: POSTGRES_USER
+          - name: SECRET_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: sahw2-configmap
+                key: SECRET_KEY

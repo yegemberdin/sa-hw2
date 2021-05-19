@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  sahw2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - POSTGRES_DB=postgredb
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - SECRET_KEY=django-insecure-09621w_nb+gxxql3u4ith3oes+hn!ng5-cnnu2%aq4z_$h3j@7
+
+  sahw2-db:
+    image: postgres:10.11-alpine
+    environment:
+      - POSTGRES_DB=sahw2
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
